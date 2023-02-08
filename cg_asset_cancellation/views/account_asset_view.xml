@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<record id="account_asset_form_inherited_cg_cancel" model="ir.ui.view">
+	    <field name="name">account.asset.form.inherit</field>
+	    <field name="model">account.asset</field>
+	    <field name="inherit_id" ref="account_asset.view_account_asset_form"/>
+	    <field name="arch" type="xml">
+        	<xpath expr="//header" position="inside">
+                <button name='cg_asset_cancel' string='CG Cancel Asset'
+                type='object'
+                attrs="{'invisible': [('manually_cancelled', '=', True)]}" />
+                <field name="manually_cancelled" invisible="1"></field>
+        	</xpath>
+	    </field>
+	</record>
+</odoo>
