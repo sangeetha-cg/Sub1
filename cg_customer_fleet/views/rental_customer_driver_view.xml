@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="customer_vehicle_form_view" model="ir.ui.view">
+			<field name="name">rental.customer.vehicle.form</field>
+			<field name="model">rental.customer.vehicle</field>
+			<field name="arch" type="xml">
+				<form string="Vehicle" >
+					<sheet>
+						<group>
+							<field name="name" required="1"/>
+						</group>
+						<group>
+							<field name="plate_no" />
+						</group>
+
+					</sheet>
+
+				</form>
+			</field>
+		</record>
+
+
+		<record id="customer_vehicle_view_tree" model="ir.ui.view">
+			<field name="name">rental.customer.vehicle.tree</field>
+			<field name="model">rental.customer.vehicle</field>
+			<field name="arch" type="xml">
+				<tree string="Vehicle">
+					<field name="plate_no" />
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+    <record id='customer_vehicle_action' model='ir.actions.act_window'>
+        <field name="name">Customer Vehicles</field>
+        <field name="res_model">rental.customer.vehicle</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new vehicle
+          </p><p>
+            Manage your fleet by keeping track of the contracts, services, odometers and fuel logs associated to each vehicle.
+          </p>
+        </field>
+    </record>
+
+	 <menuitem name="Customer Fleet"
+            id="menu_outside_customer_fleet"
+            parent="fleet.menu_root"
+            sequence="5"/>
+
+	 <menuitem name="Fleet"
+            id="menu_outside_fleet"
+            parent="menu_outside_customer_fleet"
+            action="customer_vehicle_action"
+            sequence="1"/>
+
+    <record id="customer_driver_form_view" model="ir.ui.view">
+			<field name="name">rental.customer.driver.form</field>
+			<field name="model">rental.customer.driver</field>
+			<field name="arch" type="xml">
+				<form string="Driver" >
+					<sheet>
+						<group>
+							<field name="name" required="1"/>
+                            <field name="vehicle_id" />
+						</group>
+						<group>
+							<field name="civil_id" />
+						</group>
+
+					</sheet>
+
+				</form>
+			</field>
+		</record>
+
+
+		<record id="customer_driver_view_tree" model="ir.ui.view">
+			<field name="name">rental.customer.driver.tree</field>
+			<field name="model">rental.customer.driver</field>
+			<field name="arch" type="xml">
+				<tree string="Vehicle">
+					<field name="name" />
+                    <field name="civil_id" />
+				</tree>
+			</field>
+		</record>
+
+
+
+     <record id="action_driver_customer_rental" model="ir.actions.act_window">
+            <field name="name">Customer Driver</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rental.customer.driver</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new customer in your address book
+              </p><p>
+                Odoo helps you easily track all activities related to a customer.
+              </p>
+            </field>
+        </record>
+
+	 <menuitem id="menu_driver_customer_outside"
+		    name="Driver"
+		    parent="menu_outside_customer_fleet"
+		    action="action_driver_customer_rental"
+		    sequence="2"/>
+
+
+
+</odoo>
